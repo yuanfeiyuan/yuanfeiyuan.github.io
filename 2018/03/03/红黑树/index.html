@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="红黑树在了解红黑树之前我们先来了解下二叉查找树,二叉查找树具有以下的特征: 二叉查找树1.左子树上所有结点的值均小于或等于它的根结点的值 2.右子树上所有结点的值均大于或等于它的根结点的值 3.左,右子树也分别为二叉排序树 下图列举一个简单的二叉查找树  这样的树型结构在我们进行数据查找时带来了很大的便利,比如我们查询下值为10的节点 第一次查询  第二次查询  第三次查询  第四次查询  这种方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2018/03/03/红黑树/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="红黑树在了解红黑树之前我们先来了解下二叉查找树,二叉查找树具有以下的特征: 二叉查找树1.左子树上所有结点的值均小于或等于它的根结点的值 2.右子树上所有结点的值均大于或等于它的根结点的值 3.左,右子树也分别为二叉排序树 下图列举一个简单的二叉查找树  这样的树型结构在我们进行数据查找时带来了很大的便利,比如我们查询下值为10的节点 第一次查询  第二次查询  第三次查询  第四次查询  这种方">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640.png">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640.jpeg">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640-1.jpeg">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640-2.jpeg">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640-3.jpeg">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640-1.png">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640-2.png">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640-4.jpeg">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640-5.jpeg">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640-3.png">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640-6.jpeg">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640-4.png">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640-5.png">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640-6.png">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640-7.jpeg">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640-8.jpeg">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640-7.png">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640-10.jpeg">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640-11.jpeg">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640-8.png">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640-12.jpeg">
+<meta property="og:image" content="http://yoursite.com/Users/yuanfei/Desktop/640-13.jpeg">
+<meta property="og:updated_time" content="2018-03-06T05:27:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="红黑树在了解红黑树之前我们先来了解下二叉查找树,二叉查找树具有以下的特征: 二叉查找树1.左子树上所有结点的值均小于或等于它的根结点的值 2.右子树上所有结点的值均大于或等于它的根结点的值 3.左,右子树也分别为二叉排序树 下图列举一个简单的二叉查找树  这样的树型结构在我们进行数据查找时带来了很大的便利,比如我们查询下值为10的节点 第一次查询  第二次查询  第三次查询  第四次查询  这种方">
+<meta name="twitter:image" content="http://yoursite.com/Users/yuanfei/Desktop/640.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Buscar"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-红黑树" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/03/红黑树/" class="article-date">
+  <time datetime="2018-03-03T10:42:32.000Z" itemprop="datePublished">2018-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h1><p>在了解红黑树之前我们先来了解下二叉查找树,二叉查找树具有以下的特征:</p>
+<h2 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h2><p>1.左子树上所有结点的值均小于或等于它的根结点的值</p>
+<p>2.右子树上所有结点的值均大于或等于它的根结点的值</p>
+<p>3.左,右子树也分别为二叉排序树</p>
+<p>下图列举一个简单的二叉查找树</p>
+<p><img src="/Users/yuanfei/Desktop/640.png" alt="avatar"></p>
+<p>这样的树型结构在我们进行数据查找时带来了很大的便利,比如我们查询下值为10的节点</p>
+<p>第一次查询</p>
+<p><img src="/Users/yuanfei/Desktop/640.jpeg" alt="avatar"></p>
+<p>第二次查询</p>
+<p><img src="/Users/yuanfei/Desktop/640-1.jpeg" alt="avatar"></p>
+<p>第三次查询</p>
+<p><img src="/Users/yuanfei/Desktop/640-2.jpeg" alt="avatar"></p>
+<p>第四次查询</p>
+<p><img src="/Users/yuanfei/Desktop/640-3.jpeg" alt="avatar"></p>
+<p>这种方式正是二分查找的思想,查找所需的最大次数等同于二叉查找树的高度,在插入节点的时候也是利用一层一层比较大小,找到新节点适合插入的位置。但是正是由于这种插入方式,会导致一些问题的出现.</p>
+<p>假设初始的二叉查找树只有三个节点，根节点值为9，左孩子值为8，右孩子值为12：<br><img src="/Users/yuanfei/Desktop/640-1.png" alt="avatar"></p>
+<p>接下来我们依次插入如下五个节点：7,6,5,4,3。依照二叉查找树的特性，结果会变成什么样呢</p>
+<p><img src="/Users/yuanfei/Desktop/640-2.png" alt="avatar"></p>
+<p>这样的一种形态虽然也符合二叉查找树的特性,但是查找的性能大打折扣,几乎变成了线性,那么我们该如何解决二叉查找树多次插入新节点而导致的不平衡呢?红黑树应运而生。</p>
+<h2 id="红黑树-1"><a href="#红黑树-1" class="headerlink" title="红黑树"></a>红黑树</h2><p>红黑树是一种自平衡的二叉查找树,除了符合二叉查找树的基本特征外,它还包含了一下几点特征</p>
+<p>1.节点是红色或黑色</p>
+<p>2.根节点是黑色</p>
+<p>3.每个叶子节点都是黑色的空节点（NIL节点）。</p>
+<p>4 每个红色节点的两个子节点都是黑色。(从每个叶子到根的所有路径上不能有两个连续的红色节点)</p>
+<p>5.从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点。</p>
+<p>下图中这棵树，就是一颗典型的红黑树：</p>
+<p><img src="/Users/yuanfei/Desktop/640-4.jpeg" alt="avatar"></p>
+<p>正是一位这些规则的限制,才保证了红黑树的自平衡,红黑树从根到叶子的最长路径不会超过最短路径的2倍(原因:红黑树中最短的可能路径是全部为黑色节点的路径,<br>红黑树中最长的可能路径是红黑相间的路径),但是当插入或者删除节点时,这时候就需要我们做出一些调整来继续维持我们的规则.</p>
+<p>例如,我们向之前的红黑树中插入值为21的新节点</p>
+<p><img src="/Users/yuanfei/Desktop/640-5.jpeg" alt="avatar"></p>
+<p>由于父节点22是红色节点，因此这种情况打破了红黑树的规则4（每个红色节点的两个子节点都是黑色），必须进行调整，使之重新符合红黑树的规则。</p>
+<p>那我们如何做出调整呢？在红黑树中调整的方法有两种:变色和旋转,旋转又分为左旋转和右旋转</p>
+<p>变色:</p>
+<p>为了重新符合红黑树的规则，尝试把红色节点变为黑色，或者把黑色节点变为红色。</p>
+<p><img src="/Users/yuanfei/Desktop/640-3.png" alt="avatar"></p>
+<p>但这样并不算完，因为凭空多出的黑色节点打破了规则5(从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点)，所以发生连锁反应，需要继续把节点25从黑色变成红色：</p>
+<p><img src="/Users/yuanfei/Desktop/640-6.jpeg" alt="avatar"></p>
+<p>此时仍然没有结束，因为节点25和节点27又形成了两个连续的红色节点，需要继续把节点27从红色变成黑色：</p>
+<p><img src="/Users/yuanfei/Desktop/640-4.png" alt="avatar"></p>
+<p>左旋转</p>
+<p>逆时针旋转红黑树的两个节点，使得父节点被自己的右孩子取代，而自己成为自己的左孩子。说起来很怪异，大家看下图:</p>
+<p><img src="/Users/yuanfei/Desktop/640-5.png" alt="avatar"></p>
+<p>图中，身为右孩子的Y取代了X的位置，而X变成了自己的左孩子。此为左旋转。</p>
+<p>右旋转</p>
+<p>顺时针旋转红黑树的两个节点，使得父节点被自己的左孩子取代，而自己成为自己的右孩子。大家看下图：</p>
+<p><img src="/Users/yuanfei/Desktop/640-6.png" alt="avatar"></p>
+<p>我们再以刚才的插入节点21为例</p>
+<p><img src="/Users/yuanfei/Desktop/640-7.jpeg" alt="avatar"></p>
+<p>首先，我们需要做的是变色，把节点25及其下方的节点变色</p>
+<p><img src="/Users/yuanfei/Desktop/640-8.jpeg" alt="avatar"></p>
+<p>此时节点17和节点25是连续的两个红色节点，那么把节点17变成黑色节点？恐怕不合适。这样一来不但打破了规则4(每个红色节点的两个子节点都是黑色。(从每个叶子到根的所有路径上不能有两个连续的红色节点))，而且根据规则2（根节点是黑色），也不可能把节点13变成红色节点,这时我们把节点13看作X,把节点17看作Y,进行左旋转:</p>
+<p><img src="/Users/yuanfei/Desktop/640-7.png" alt="avatar"></p>
+<p><img src="/Users/yuanfei/Desktop/640-10.jpeg" alt="avatar"></p>
+<p>由于根节点必须时黑色节点,所以需要变色,变色结果如下</p>
+<p><img src="/Users/yuanfei/Desktop/640-11.jpeg" alt="avatar"></p>
+<p>这样就结束了吗？并没有。因为其中两条路径(17 -&gt; 8 -&gt; 6 -&gt; NIL)的黑色节点个数是4，其他路径的黑色节点个数是3，不符合规则5(从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点)。</p>
+<p>这时候我们需要把节点13看做X，节点8看做Y，像刚才的示意图那样进行右旋转：</p>
+<p><img src="/Users/yuanfei/Desktop/640-8.png" alt="avatar"></p>
+<p><img src="/Users/yuanfei/Desktop/640-12.jpeg" alt="avatar"></p>
+<p>最后根据规则来进行变色:</p>
+<p><img src="/Users/yuanfei/Desktop/640-13.jpeg" alt="avatar"></p>
+<p>如此一来，我们的红黑树变得重新符合规则。这一个例子的调整过程比较复杂，经历了如下步骤：</p>
+<p>变色 -&gt; 左旋转 -&gt; 变色 -&gt; 右旋转 -&gt; 变色</p>
+<p>红黑树的应用有很多,其中JDK的集合类TreeMap和TreeSet底层就是红黑树实现的,在java8中,连HashMap也用到了红黑树.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/03/红黑树/" data-id="cjeflu92j0000pdc9mtpcxeij" class="article-share-link">Compartir</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/03/06/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Nuevo</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archivos</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Posts recientes</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/03/红黑树/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Construido por <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
